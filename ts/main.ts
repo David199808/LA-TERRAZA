@@ -88,14 +88,21 @@ const vigilante = new IntersectionObserver(
         enlaces.forEach((enlace) => {
           enlace.classList.remove("categorias__enlace--activo");
         });
-        const enlaceActivo = document.querySelector(
+        const enlaceActivo = document.querySelector<HTMLElement>(
           `.categorias__enlace[href="#${id}"]`,
         )!;
         enlaceActivo.classList.add("categorias__enlace--activo");
+        categorias.scrollTo({
+          left:
+            enlaceActivo.offsetLeft -
+            categorias.clientWidth / 2 +
+            enlaceActivo.clientWidth / 2,
+          behavior: "smooth",
+        });
       }
     });
   },
-  { rootMargin: "-40% 0px -55% 0px" },
+  { rootMargin: "-35% 0px -60% 0px" },
 );
 
 // ----- INICIO ----- //

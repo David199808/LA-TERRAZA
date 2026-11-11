@@ -74,9 +74,15 @@ const vigilante = new IntersectionObserver((entradas) => {
             });
             const enlaceActivo = document.querySelector(`.categorias__enlace[href="#${id}"]`);
             enlaceActivo.classList.add("categorias__enlace--activo");
+            categorias.scrollTo({
+                left: enlaceActivo.offsetLeft -
+                    categorias.clientWidth / 2 +
+                    enlaceActivo.clientWidth / 2,
+                behavior: "smooth",
+            });
         }
     });
-}, { rootMargin: "-40% 0px -55% 0px" });
+}, { rootMargin: "-35% 0px -60% 0px" });
 // ----- INICIO ----- //
 dibujarMenu();
 dibujarCategorias();
