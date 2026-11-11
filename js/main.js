@@ -123,7 +123,9 @@ const vigilante = new IntersectionObserver((entradas) => {
 pedidoFlotante.addEventListener("click", () => {
     mostrarPedido();
     panelPedido.hidden = false;
-    botonCerrar.hidden = true;
+});
+botonCerrar.addEventListener("click", () => {
+    panelPedido.hidden = true;
 });
 // ----- INICIO ----- //
 dibujarMenu();

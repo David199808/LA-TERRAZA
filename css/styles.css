@@ -117,3 +117,146 @@ img {
   border-color: var(--fuego);
   color: #1a0f05;
 }
+
+/* ---------- Botón flotante "Ver pedido" ---------- */
+
+.pedido-flotante {
+  position: fixed;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  max-width: 520px;
+  margin: 0 auto;
+  min-height: 52px;
+  border: none;
+  border-radius: 999px;
+  background: var(--fuego);
+  color: #1a0f05;
+  font: inherit;
+  font-weight: 800;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  z-index: 15;
+}
+
+/* ---------- Panel del pedido ---------- */
+
+.panel-pedido {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  max-width: 520px;
+  margin: 0 auto;
+  max-height: 80vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px 20px 28px;
+  background: var(--superficie);
+  border-radius: var(--radius) var(--radius);
+  box-shadow: 0 -12px 32px rgba(0, 0, 0, 0.6);
+  z-index: 20;
+}
+
+.panel-pedido h2 {
+  margin: 0;
+  font-family: var(--guion);
+  font-weight: 400;
+  font-size: 36px;
+  color: var(--dorado);
+  text-align: center;
+}
+
+.panel-pedido__cerrar {
+  align-self: flex-end;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--superficie-2);
+  border-radius: 50%;
+  background: none;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+/* ---------- Líneas del pedido ---------- */
+
+.panel-pedido__lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.panel-pedido__lista li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--superficie-2);
+  font-weight: 600;
+}
+
+.panel-pedido__lista li:last-child {
+  border-bottom: 0;
+}
+
+.panel-pedido__lista button {
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--fuego);
+  border-radius: 50%;
+  background: none;
+  color: var(--fuego);
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* ---------- Total y enviar ---------- */
+
+.panel-pedido__total {
+  margin: 0;
+  padding-top: 12px;
+  border-top: 2px solid var(--fuego);
+  font-size: 22px;
+  font-weight: 900;
+  text-align: right;
+  color: var(--fuego);
+}
+
+.panel-pedido__enviar {
+  min-height: 52px;
+  border: none;
+  border-radius: 999px;
+  background: #25d366;
+  color: #fff;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+/* ---------- Hover solo con mouse ---------- */
+
+@media (hover: hover) {
+  .pedido-flotante:hover {
+    background: var(--dorado);
+  }
+  .panel-pedido__cerrar:hover {
+    color: var(--texto);
+    border-color: var(--muted);
+  }
+  .panel-pedido__lista button:hover {
+    background: var(--dorado);
+    color: #1a0f05;
+  }
+  .panel-pedido__enviar:hover {
+    filter: brightness(1.1);
+  }
+}
+
+/* Que el botón flotante no tape el último plato */
+.menu {
+  padding-bottom: 100px;
+}
