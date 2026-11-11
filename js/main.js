@@ -1,6 +1,6 @@
 import { MENU } from "./menu-datos.js";
 const menu = document.querySelector(".menu");
-const categorias = document.querySelector(".cats__interior");
+const categorias = document.querySelector(".categorias__enlaces");
 // Convierte 150000 en "$150.000"
 const formatoPesos = new Intl.NumberFormat("es-CO", {
     style: "currency",
@@ -20,9 +20,12 @@ function crearTarjeta(plato) {
     const nombre = document.createElement("h3");
     nombre.classList.add("plato__titulo");
     nombre.textContent = plato.nombre;
-    const descripcion = document.createElement("p");
-    descripcion.classList.add("plato__descripcion");
-    descripcion.textContent = plato.descripcion;
+    if (plato.descripcion) {
+        const descripcion = document.createElement("p");
+        descripcion.classList.add("plato__descripcion");
+        descripcion.textContent = plato.descripcion;
+        tarjeta.append(descripcion);
+    }
     const precio = document.createElement("p");
     precio.classList.add("plato__precio");
     precio.textContent = formatoPesos.format(plato.precio);
@@ -30,7 +33,7 @@ function crearTarjeta(plato) {
     boton.classList.add("plato__boton");
     boton.dataset.id = String(plato.id);
     boton.textContent = "Agregar al pedido";
-    tarjeta.append(nombre, descripcion, precio, boton);
+    tarjeta.append(nombre, precio, boton);
     return tarjeta;
 }
 // ------ Dibujar Menú ----- //
@@ -58,6 +61,26 @@ function dibujarCategorias() {
         categorias.append(enlaceHTML);
     });
 }
+// ----- Vigilante de la sección ----- //
+const vigilante = new IntersectionObserver((entradas) => {
+    entradas.forEach((entrada) => {
+        // ¿Esta seccion esta en pantalla?
+        if (entrada.isIntersecting) {
+            // ¿cual es? -> "cocteles"
+            const id = entrada.target.id;
+            const enlaces = document.querySelectorAll(".categorias__enlace");
+            enlaces.forEach((enlace) => {
+                enlace.classList.remove("categorias__enlace--activo");
+            });
+            const enlaceActivo = document.querySelector(`.categorias__enlace[href="#${id}"]`);
+            enlaceActivo.classList.add("categorias__enlace--activo");
+        }
+    });
+}, { rootMargin: "-40% 0px -55% 0px" });
 // ----- INICIO ----- //
 dibujarMenu();
 dibujarCategorias();
+const secciones = document.querySelectorAll("section");
+secciones.forEach((seccion) => {
+    vigilante.observe(seccion);
+});

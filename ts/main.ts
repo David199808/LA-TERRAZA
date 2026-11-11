@@ -1,7 +1,7 @@
 import { MENU, Plato } from "./menu-datos.js";
 
 const menu = document.querySelector<HTMLElement>(".menu")!;
-const categorias = document.querySelector<HTMLElement>(".cats__interior")!;
+const categorias = document.querySelector<HTMLElement>(".categorias__enlaces")!;
 
 // Convierte 150000 en "$150.000"
 const formatoPesos = new Intl.NumberFormat("es-CO", {
@@ -26,9 +26,12 @@ function crearTarjeta(plato: Plato) {
   nombre.classList.add("plato__titulo");
   nombre.textContent = plato.nombre;
 
-  const descripcion = document.createElement("p");
-  descripcion.classList.add("plato__descripcion");
-  descripcion.textContent = plato.descripcion;
+  if (plato.descripcion) {
+    const descripcion = document.createElement("p");
+    descripcion.classList.add("plato__descripcion");
+    descripcion.textContent = plato.descripcion;
+    tarjeta.append(descripcion);
+  }
 
   const precio = document.createElement("p");
   precio.classList.add("plato__precio");
@@ -39,7 +42,7 @@ function crearTarjeta(plato: Plato) {
   boton.dataset.id = String(plato.id);
   boton.textContent = "Agregar al pedido";
 
-  tarjeta.append(nombre, descripcion, precio, boton);
+  tarjeta.append(nombre, precio, boton);
   return tarjeta;
 }
 
@@ -72,7 +75,34 @@ function dibujarCategorias() {
   });
 }
 
+// ----- Vigilante de la sección ----- //
+
+const vigilante = new IntersectionObserver(
+  (entradas) => {
+    entradas.forEach((entrada) => {
+      // ¿Esta seccion esta en pantalla?
+      if (entrada.isIntersecting) {
+        // ¿cual es? -> "cocteles"
+        const id = entrada.target.id;
+        const enlaces = document.querySelectorAll(".categorias__enlace");
+        enlaces.forEach((enlace) => {
+          enlace.classList.remove("categorias__enlace--activo");
+        });
+        const enlaceActivo = document.querySelector(
+          `.categorias__enlace[href="#${id}"]`,
+        )!;
+        enlaceActivo.classList.add("categorias__enlace--activo");
+      }
+    });
+  },
+  { rootMargin: "-40% 0px -55% 0px" },
+);
+
 // ----- INICIO ----- //
 
 dibujarMenu();
 dibujarCategorias();
+const secciones = document.querySelectorAll("section");
+secciones.forEach((seccion) => {
+  vigilante.observe(seccion);
+});
