@@ -1,0 +1,88 @@
+/* ============================================================
+   LA TERRAZA GRILL HOUSE · Menú
+   Colores tomados del logo (opción "Luces de la terraza").
+   Cambia aquí los colores y se actualiza toda la página.
+   ============================================================ */
+:root {
+  --fondo: #121110; /* fondo carbón */
+  --superficie: #1c1a17; /* tarjetas */
+  --superficie-2: #26231f; /* bordes / hover */
+  --texto: #fff6e8; /* crema del logo */
+  --muted: #bdb2a3; /* texto secundario */
+  --fuego: #f28c28; /* naranja de la llama */
+  --dorado: #f5b54a; /* dorado de "Grill House" */
+
+  --fuente: "Montserrat", system-ui, sans-serif;
+  --guion: "Yellowtail", cursive;
+
+  --radius: 16px;
+  --max: 1100px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 76px;
+}
+
+body {
+  margin: 0;
+  background: var(--fondo);
+  color: var(--texto);
+  font-family: var(--fuente);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* ---------- Encabezado ---------- */
+.header {
+  text-align: center;
+  padding: 40px 16px 8px;
+}
+.header__logo {
+  width: min(440px, 88vw);
+  height: auto;
+  margin: 0 auto;
+}
+.header__guion {
+  margin: 14px 0 0;
+  font-family: var(--guion);
+  font-size: clamp(30px, 7vw, 42px);
+  color: var(--dorado);
+  line-height: 1.1;
+}
+
+/* ---------- Barra de categorías ---------- */
+.cats {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(18, 17, 16, 0.94);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--surface-2);
+}
+.cats__interior {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 12px 16px;
+  scrollbar-width: none;
+}
+.cats__inner::-webkit-scrollbar {
+  display: none;
+}

@@ -1,10 +1,39 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Menú · La Terraza Grill House</title>
+    <meta
+      name="description"
+      content="Menú de La Terraza Grill House: brochetas, picadas, hamburguesas a la parrilla, smash, cócteles y bebidas."
+    />
+    <meta name="theme-color" content="#121110" />
+    <link rel="icon" href="img/logo.svg" type="image/svg+xml" />
+
+    <!-- Tipografías del logo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Yellowtail&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
   </head>
-  <body></body>
+  <body>
+    <!-- Encabezado con el logo -->
+    <header class="header">
+      <img class="header__logo" src="img/logo.svg" alt="La Terraza Grill House" width="966" height="531" />
+      <p class="header__guion">Nuestro menú</p>
+    </header>
+
+    <!-- Barra de categorías (se llena desde js/app.js) -->
+    <nav class="cats" aria-label="Categorías del menú">
+      <div class="cats__interior" id="cats"></div>
+    </nav>
+
+    <!-- Aquí se dibuja el menú (desde js/menu-datos.js) -->
+    <main class="menu" id="menu"></main>
+  </body>
   <script type="module" src="js/main.js"></script>
 </html>
