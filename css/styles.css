@@ -118,6 +118,115 @@ img {
   color: #1a0f05;
 }
 
+/* ---------- Menú ---------- */
+
+.menu {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 8px 16px 100px;
+}
+
+/* Cada sección es una grilla de tarjetas */
+
+.menu section {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+  padding-top: 32px;
+}
+
+/* El título ocupa toda la fila, con la línea de fuego */
+
+.menu section h2 {
+  grid-column: 1 / -1; /* de la primera a la ultima columna */
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-weight: 900;
+  font-size: clamp(22px, 5vw, 28px);
+  text-transform: uppercase;
+}
+
+.menu section h2::after {
+  /* la linea naranja que se desvanece */
+  content: "";
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(to right, var(--fuego), transparent);
+}
+
+/* ---------- Tarjeta ---------- */
+
+.plato {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-bottom: 16px;
+  background: var(--superficie);
+  border: 1px solid var(--superficie-2);
+  border-radius: var(--radius);
+  overflow: hidden; /* la foto respeta las esquinas redondas */
+}
+
+/* Platos sin foto: borde de fuego arriba */
+
+.plato:not(:has(img)) {
+  border-top: 3px solid var(--fuego);
+  padding-top: 16px;
+}
+
+.plato__imagen {
+  width: 100%;
+  aspect-ratio: 4 / 3; /* todas las fotos de la misma forma */
+  object-fit: cover; /* recortar sin deformar */
+}
+
+/* Aire a los lados de todo lo que no es la foto */
+
+.plato__titulo,
+.plato__descripcion,
+.plato__precio,
+.plato__boton {
+  margin: 0 16px;
+}
+
+.plato__titulo {
+  font-size: 18px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.plato__descripcion {
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.plato__precio {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--fuego);
+}
+
+.plato__boton {
+  margin-top: auto;
+  min-height: 44px;
+  border: 1px solid var(--fuego);
+  border-radius: 999px;
+  background: none;
+  color: var(--fuego);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+@media (hover: hover) {
+  .plato__boton:hover {
+    background: var(--fuego);
+    color: #1a0f05;
+  }
+}
+
 /* ---------- Botón flotante "Ver pedido" ---------- */
 
 .pedido-flotante {

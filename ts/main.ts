@@ -46,6 +46,7 @@ function crearTarjeta(plato: Plato) {
   const nombre = document.createElement("h3");
   nombre.classList.add("plato__titulo");
   nombre.textContent = plato.nombre;
+  tarjeta.append(nombre);
 
   if (plato.descripcion) {
     const descripcion = document.createElement("p");
@@ -60,7 +61,6 @@ function crearTarjeta(plato: Plato) {
 
   const boton = document.createElement("button");
   boton.classList.add("plato__boton");
-  boton.dataset.id = String(plato.id);
   boton.textContent = "Agregar al pedido";
 
   boton.addEventListener("click", () => {
@@ -68,7 +68,7 @@ function crearTarjeta(plato: Plato) {
     actualizarContador();
   });
 
-  tarjeta.append(nombre, precio, boton);
+  tarjeta.append(precio, boton);
   return tarjeta;
 }
 
