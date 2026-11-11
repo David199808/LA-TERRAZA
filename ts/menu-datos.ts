@@ -31,7 +31,7 @@ export interface Seccion {
   items: Plato[];
 }
 
-const MENU: Seccion[] = [
+export const MENU: Seccion[] = [
   {
     id: "platos-fuertes",
     titulo: "Platos fuertes",

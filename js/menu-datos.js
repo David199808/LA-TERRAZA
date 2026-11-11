@@ -1,4 +1,4 @@
-const MENU = [
+export const MENU = [
     {
         id: "platos-fuertes",
         titulo: "Platos fuertes",
@@ -48,4 +48,3 @@ const MENU = [
         ],
     },
 ];
-export {};
