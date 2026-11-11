@@ -1,11 +1,22 @@
 import { Pedido } from "./pedido.js";
 import { MENU, Plato } from "./menu-datos.js";
 
+// ----- VARIABLES ----- //
 const pedidoNuevo = new Pedido();
 
 const menu = document.querySelector<HTMLElement>(".menu")!;
 const categorias = document.querySelector<HTMLElement>(".categorias__enlaces")!;
-const contador = document.querySelector<HTMLElement>(".pedido__contador");
+const pedidoFlotante = document.querySelector<HTMLElement>(".pedido-flotante")!;
+const contador = document.querySelector<HTMLElement>(".pedido__contador")!;
+const panelPedido = document.querySelector<HTMLElement>(".panel-pedido")!;
+const panelLista = document.querySelector<HTMLElement>(".panel-pedido__lista")!;
+const panelTotal = document.querySelector<HTMLElement>(".panel-pedido__total")!;
+const botonEnviar = document.querySelector<HTMLElement>(
+  ".panel-pedido__enviar",
+)!;
+const botonCerrar = document.querySelector<HTMLElement>(
+  ".panel-pedido__cerrar",
+)!;
 
 // Convierte 150000 en "$150.000"
 const formatoPesos = new Intl.NumberFormat("es-CO", {
@@ -78,6 +89,25 @@ function dibujarMenu() {
   });
 }
 
+function mostrarPedido() {
+  panelLista.innerHTML = "";
+  pedidoNuevo.obtenerItems().forEach((item) => {
+    const linea = document.createElement("li");
+    linea.textContent = `${item.nombre} x ${item.cantidad} ${formatoPesos.format(item.precio * item.cantidad)}`;
+
+    const botonQuitar = document.createElement("button");
+    botonQuitar.textContent = "-";
+    botonQuitar.addEventListener("click", () => {
+      pedidoNuevo.quitarPlato(item.id);
+      mostrarPedido();
+      actualizarContador();
+    });
+    linea.append(botonQuitar);
+    panelLista.append(linea);
+  });
+  panelTotal.textContent = `Total: ${formatoPesos.format(pedidoNuevo.calcularTotal())}`;
+}
+
 // ----- Dibujar Categorias ----- //
 
 function dibujarCategorias() {
@@ -119,6 +149,14 @@ const vigilante = new IntersectionObserver(
   },
   { rootMargin: "-35% 0px -60% 0px" },
 );
+
+// ----- EVENTOS ----- //
+
+pedidoFlotante.addEventListener("click", () => {
+  mostrarPedido();
+  panelPedido.hidden = false;
+  botonCerrar.hidden = true;
+});
 
 // ----- INICIO ----- //
 

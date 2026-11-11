@@ -1,9 +1,16 @@
 import { Pedido } from "./pedido.js";
 import { MENU } from "./menu-datos.js";
+// ----- VARIABLES ----- //
 const pedidoNuevo = new Pedido();
 const menu = document.querySelector(".menu");
 const categorias = document.querySelector(".categorias__enlaces");
+const pedidoFlotante = document.querySelector(".pedido-flotante");
 const contador = document.querySelector(".pedido__contador");
+const panelPedido = document.querySelector(".panel-pedido");
+const panelLista = document.querySelector(".panel-pedido__lista");
+const panelTotal = document.querySelector(".panel-pedido__total");
+const botonEnviar = document.querySelector(".panel-pedido__enviar");
+const botonCerrar = document.querySelector(".panel-pedido__cerrar");
 // Convierte 150000 en "$150.000"
 const formatoPesos = new Intl.NumberFormat("es-CO", {
     style: "currency",
@@ -63,6 +70,23 @@ function dibujarMenu() {
         menu.append(seccionHTML);
     });
 }
+function mostrarPedido() {
+    panelLista.innerHTML = "";
+    pedidoNuevo.obtenerItems().forEach((item) => {
+        const linea = document.createElement("li");
+        linea.textContent = `${item.nombre} x ${item.cantidad} ${formatoPesos.format(item.precio * item.cantidad)}`;
+        const botonQuitar = document.createElement("button");
+        botonQuitar.textContent = "-";
+        botonQuitar.addEventListener("click", () => {
+            pedidoNuevo.quitarPlato(item.id);
+            mostrarPedido();
+            actualizarContador();
+        });
+        linea.append(botonQuitar);
+        panelLista.append(linea);
+    });
+    panelTotal.textContent = `Total: ${formatoPesos.format(pedidoNuevo.calcularTotal())}`;
+}
 // ----- Dibujar Categorias ----- //
 function dibujarCategorias() {
     MENU.forEach((seccion) => {
@@ -95,6 +119,12 @@ const vigilante = new IntersectionObserver((entradas) => {
         }
     });
 }, { rootMargin: "-35% 0px -60% 0px" });
+// ----- EVENTOS ----- //
+pedidoFlotante.addEventListener("click", () => {
+    mostrarPedido();
+    panelPedido.hidden = false;
+    botonCerrar.hidden = true;
+});
 // ----- INICIO ----- //
 dibujarMenu();
 dibujarCategorias();
