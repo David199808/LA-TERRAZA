@@ -232,3 +232,17 @@ export const MENU = [
         ],
     },
 ];
+export function guardarProductos(lista) {
+    localStorage.setItem("menu", JSON.stringify(lista));
+}
+export function obtenerProducto() {
+    const guardado = localStorage.getItem("menu");
+    if (guardado) {
+        const guardados = JSON.parse(guardado);
+        return guardados;
+    }
+    else {
+        guardarProductos(MENU);
+        return MENU;
+    }
+}

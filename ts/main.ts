@@ -1,7 +1,11 @@
+import { Pedido } from "./pedido.js";
 import { MENU, Plato } from "./menu-datos.js";
+
+const pedidoNuevo = new Pedido();
 
 const menu = document.querySelector<HTMLElement>(".menu")!;
 const categorias = document.querySelector<HTMLElement>(".categorias__enlaces")!;
+const contador = document.querySelector<HTMLElement>(".pedido__contador");
 
 // Convierte 150000 en "$150.000"
 const formatoPesos = new Intl.NumberFormat("es-CO", {
@@ -9,6 +13,12 @@ const formatoPesos = new Intl.NumberFormat("es-CO", {
   currency: "COP",
   maximumFractionDigits: 0,
 });
+
+function actualizarContador() {
+  if (contador) {
+    contador.textContent = String(pedidoNuevo.contarUnidades());
+  }
+}
 
 function crearTarjeta(plato: Plato) {
   const tarjeta = document.createElement("article");
@@ -41,6 +51,11 @@ function crearTarjeta(plato: Plato) {
   boton.classList.add("plato__boton");
   boton.dataset.id = String(plato.id);
   boton.textContent = "Agregar al pedido";
+
+  boton.addEventListener("click", () => {
+    pedidoNuevo.agregarPlato(plato);
+    actualizarContador();
+  });
 
   tarjeta.append(nombre, precio, boton);
   return tarjeta;
@@ -109,6 +124,7 @@ const vigilante = new IntersectionObserver(
 
 dibujarMenu();
 dibujarCategorias();
+actualizarContador();
 const secciones = document.querySelectorAll("section");
 secciones.forEach((seccion) => {
   vigilante.observe(seccion);

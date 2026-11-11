@@ -111,7 +111,8 @@ img {
   color: var(--texto);
   border-color: var(--muted);
 }
-.categorias__enlace--activo {
+
+.categorias__enlace.categorias__enlace--activo {
   background: var(--fuego);
   border-color: var(--fuego);
   color: #1a0f05;

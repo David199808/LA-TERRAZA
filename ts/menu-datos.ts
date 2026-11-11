@@ -282,3 +282,18 @@ export const MENU: Seccion[] = [
     ],
   },
 ];
+
+export function guardarProductos(lista: Seccion[]) {
+  localStorage.setItem("menu", JSON.stringify(lista));
+}
+
+export function obtenerProducto(): Seccion[] {
+  const guardado = localStorage.getItem("menu");
+  if (guardado) {
+    const guardados: Seccion[] = JSON.parse(guardado);
+    return guardados;
+  } else {
+    guardarProductos(MENU);
+    return MENU;
+  }
+}

@@ -1,12 +1,20 @@
+import { Pedido } from "./pedido.js";
 import { MENU } from "./menu-datos.js";
+const pedidoNuevo = new Pedido();
 const menu = document.querySelector(".menu");
 const categorias = document.querySelector(".categorias__enlaces");
+const contador = document.querySelector(".pedido__contador");
 // Convierte 150000 en "$150.000"
 const formatoPesos = new Intl.NumberFormat("es-CO", {
     style: "currency",
     currency: "COP",
     maximumFractionDigits: 0,
 });
+function actualizarContador() {
+    if (contador) {
+        contador.textContent = String(pedidoNuevo.contarUnidades());
+    }
+}
 function crearTarjeta(plato) {
     const tarjeta = document.createElement("article");
     tarjeta.classList.add("plato");
@@ -33,6 +41,10 @@ function crearTarjeta(plato) {
     boton.classList.add("plato__boton");
     boton.dataset.id = String(plato.id);
     boton.textContent = "Agregar al pedido";
+    boton.addEventListener("click", () => {
+        pedidoNuevo.agregarPlato(plato);
+        actualizarContador();
+    });
     tarjeta.append(nombre, precio, boton);
     return tarjeta;
 }
@@ -86,6 +98,7 @@ const vigilante = new IntersectionObserver((entradas) => {
 // ----- INICIO ----- //
 dibujarMenu();
 dibujarCategorias();
+actualizarContador();
 const secciones = document.querySelectorAll("section");
 secciones.forEach((seccion) => {
     vigilante.observe(seccion);
