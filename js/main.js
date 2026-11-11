@@ -1,5 +1,6 @@
 import { MENU } from "./menu-datos.js";
 const menu = document.querySelector(".menu");
+const categorias = document.querySelector(".cats__interior");
 // Convierte 150000 en "$150.000"
 const formatoPesos = new Intl.NumberFormat("es-CO", {
     style: "currency",
@@ -47,5 +48,16 @@ function dibujarMenu() {
         menu.append(seccionHTML);
     });
 }
+// ----- Dibujar Categorias ----- //
+function dibujarCategorias() {
+    MENU.forEach((seccion) => {
+        const enlaceHTML = document.createElement("a");
+        enlaceHTML.classList.add("categorias__enlace");
+        enlaceHTML.textContent = seccion.titulo;
+        enlaceHTML.href = `#${seccion.id}`;
+        categorias.append(enlaceHTML);
+    });
+}
 // ----- INICIO ----- //
 dibujarMenu();
+dibujarCategorias();
