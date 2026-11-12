@@ -306,7 +306,7 @@ botonEnviar.addEventListener("click", () => {
   // 3. armar el mensaje completo: saludo + líneas juntas + total
   const mensaje = `¡Hola La Terraza Grill House! Este es mi pedido: \n${lineas.join("\n")}\nTotal: ${formatoPesos.format(pedidoNuevo.calcularTotal())}`;
   // 4. armar el link de WhatsApp con el mensaje seguro
-  const link = `https://wa.me/573001234567?text=${encodeURIComponent(mensaje)}`;
+  const link = `https://wa.me/573132025273?text=${encodeURIComponent(mensaje)}`;
   // 5. abrirlo en una pestaña nueva
   window.open(link, "_blank");
 });
