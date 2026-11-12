@@ -88,20 +88,28 @@ function crearFila(plato) {
 }
 // ------ Dibujar Menú ----- //
 function dibujarMenu() {
+    let grupoAnterior = null;
     MENU.forEach((seccion) => {
         const seccionHTML = document.createElement("section");
         seccionHTML.id = seccion.id;
         const tituloHTML = document.createElement("h2");
         tituloHTML.textContent = seccion.titulo;
         seccionHTML.append(tituloHTML);
+        if (seccion.grupo !== grupoAnterior) {
+            const seccionGrupo = document.createElement("h1");
+            seccionGrupo.classList.add("seccion__grupo");
+            seccionGrupo.textContent = seccion.grupo;
+            menu.append(seccionGrupo);
+            grupoAnterior = seccion.grupo;
+        }
         if (seccion.estilo === "lista") {
             const listaHTML = document.createElement("ul");
             listaHTML.classList.add("lista");
             seccion.items.forEach((plato) => {
                 const fila = crearFila(plato);
                 listaHTML.append(fila);
-                seccionHTML.append(listaHTML);
             });
+            seccionHTML.append(listaHTML);
         }
         else {
             seccion.items.forEach((plato) => {

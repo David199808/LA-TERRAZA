@@ -120,6 +120,16 @@ img {
 
 /* ---------- Menú ---------- */
 
+.seccion__grupo {
+  margin: 48px 0 0;
+  font-family: var(--guion); /* la letra cursiva de "Nuestro menú" */
+  font-weight: 400;
+  font-size: clamp(40px, 9vh, 56px);
+  color: var(--dorado);
+  text-align: center;
+  text-transform: capitalize;
+}
+
 .menu {
   max-width: var(--max);
   margin: 0 auto;
