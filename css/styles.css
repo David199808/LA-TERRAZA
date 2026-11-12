@@ -277,6 +277,20 @@ img {
   font: inherit;
   font-weight: 700;
   cursor: pointer;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    transform 0.1s;
+}
+
+.plato__boton:active {
+  transform: scale(0.96); /* se "hunde" un poquito al tocar */
+}
+
+.plato__boton.plato__boton--agregado {
+  background: var(--fuego);
+  color: #1a0f05;
+  border-color: var(--fuego);
 }
 
 @media (hover: hover) {
@@ -327,10 +341,23 @@ img {
   color: var(--fuego);
   font-size: 20px;
   cursor: pointer;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    transform 0.1s;
+}
+
+.plato-fila__boton:active {
+  transform: scale(0.96); /* se "hunde" un poquito al tocar */
+}
+
+.plato-fila__boton.plato__fila-boton--agregado {
+  background: var(--fuego);
+  color: #1a0f05;
+  border-color: var(--fuego);
 }
 
 /* Nombre · · · · · precio, en una sola línea */
-
 .plato-fila__linea {
   display: flex;
   align-items: baseline; /* textos alineados por su base */
@@ -393,6 +420,19 @@ img {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
   cursor: pointer;
   z-index: 15;
+}
+
+/* ---------- Panel del fondo ---------- */
+.panel-fondo {
+  position: fixed;
+  inset: 0; /* NUEVO: top, right, bottom y left en 0 = toda la pantalla */
+  background: rgba(
+    0,
+    0,
+    0,
+    0.6
+  ); /* negro al 60%: se ve el menú apagado detrás */
+  z-index: 18; /* encima del botón flotante (15), debajo del panel (20) */
 }
 
 /* ---------- Panel del pedido ---------- */
@@ -489,8 +529,18 @@ img {
   border-radius: 999px;
   background: #25d366;
   color: #fff;
+  font-size: 15px;
   font-weight: 800;
   cursor: pointer;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    transform 0.1s;
+}
+
+.panel-pedido__enviar :active {
+  transform: scale(0.96); /* se "hunde" un poquito al tocar */
+  filter: brightness(0.9);
 }
 
 /* ---------- Hover solo con mouse ---------- */

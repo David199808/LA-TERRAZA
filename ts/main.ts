@@ -18,6 +18,8 @@ const botonCerrar = document.querySelector<HTMLElement>(
   ".panel-pedido__cerrar",
 )!;
 
+const panelFondo = document.querySelector<HTMLElement>(".panel-fondo")!;
+
 const buscador = document.querySelector<HTMLInputElement>(".buscador__input")!;
 
 const sinResultados = document.querySelector<HTMLElement>(".sin-resultados")!;
@@ -77,6 +79,12 @@ function crearTarjeta(plato: Plato) {
   boton.addEventListener("click", () => {
     pedidoNuevo.agregarPlato(plato);
     actualizarContador();
+    boton.textContent = "✓ Agregado";
+    boton.classList.add("plato__boton--agregado");
+    setTimeout(() => {
+      boton.textContent = "Agregar al pedido";
+      boton.classList.remove("plato__boton--agregado");
+    }, 1000);
   });
 
   tarjeta.append(precio, boton);
@@ -118,6 +126,12 @@ function crearFila(plato: Plato) {
   botonFila.addEventListener("click", () => {
     pedidoNuevo.agregarPlato(plato);
     actualizarContador();
+    botonFila.textContent = "✓";
+    botonFila.classList.add("plato__fila-boton--agregado");
+    setTimeout(() => {
+      botonFila.textContent = "+";
+      botonFila.classList.remove("plato__fila-boton--agregado");
+    }, 1000);
   });
   platoFila.append(botonFila);
   return platoFila;
@@ -189,6 +203,12 @@ function dibujarCategorias() {
   });
 }
 
+// ---------- Cerrar Panel ---------- //
+function cerrarPanel() {
+  panelPedido.hidden = true;
+  panelFondo.hidden = true;
+}
+
 // ----- Vigilante de la sección ----- //
 
 const vigilante = new IntersectionObserver(
@@ -224,11 +244,15 @@ const vigilante = new IntersectionObserver(
 pedidoFlotante.addEventListener("click", () => {
   mostrarPedido();
   panelPedido.hidden = false;
+  panelFondo.hidden = false; // también se muestra el fondo
 });
 
 botonCerrar.addEventListener("click", () => {
   panelPedido.hidden = true;
 });
+
+botonCerrar.addEventListener("click", cerrarPanel); // la ✕ cierra
+panelFondo.addEventListener("click", cerrarPanel); // tocar afuera también cierra
 
 //---------- BUSCADOR ---------- //
 

@@ -11,6 +11,7 @@ const panelLista = document.querySelector(".panel-pedido__lista");
 const panelTotal = document.querySelector(".panel-pedido__total");
 const botonEnviar = document.querySelector(".panel-pedido__enviar");
 const botonCerrar = document.querySelector(".panel-pedido__cerrar");
+const panelFondo = document.querySelector(".panel-fondo");
 const buscador = document.querySelector(".buscador__input");
 const sinResultados = document.querySelector(".sin-resultados");
 // Convierte 150000 en "$150.000"
@@ -59,6 +60,12 @@ function crearTarjeta(plato) {
     boton.addEventListener("click", () => {
         pedidoNuevo.agregarPlato(plato);
         actualizarContador();
+        boton.textContent = "✓ Agregado";
+        boton.classList.add("plato__boton--agregado");
+        setTimeout(() => {
+            boton.textContent = "Agregar al pedido";
+            boton.classList.remove("plato__boton--agregado");
+        }, 1000);
     });
     tarjeta.append(precio, boton);
     return tarjeta;
@@ -90,6 +97,12 @@ function crearFila(plato) {
     botonFila.addEventListener("click", () => {
         pedidoNuevo.agregarPlato(plato);
         actualizarContador();
+        botonFila.textContent = "✓";
+        botonFila.classList.add("plato__fila-boton--agregado");
+        setTimeout(() => {
+            botonFila.textContent = "+";
+            botonFila.classList.remove("plato__fila-boton--agregado");
+        }, 1000);
     });
     platoFila.append(botonFila);
     return platoFila;
@@ -155,6 +168,11 @@ function dibujarCategorias() {
         categorias.append(enlaceHTML);
     });
 }
+// ---------- Cerrar Panel ---------- //
+function cerrarPanel() {
+    panelPedido.hidden = true;
+    panelFondo.hidden = true;
+}
 // ----- Vigilante de la sección ----- //
 const vigilante = new IntersectionObserver((entradas) => {
     entradas.forEach((entrada) => {
@@ -181,10 +199,13 @@ const vigilante = new IntersectionObserver((entradas) => {
 pedidoFlotante.addEventListener("click", () => {
     mostrarPedido();
     panelPedido.hidden = false;
+    panelFondo.hidden = false; // también se muestra el fondo
 });
 botonCerrar.addEventListener("click", () => {
     panelPedido.hidden = true;
 });
+botonCerrar.addEventListener("click", cerrarPanel); // la ✕ cierra
+panelFondo.addEventListener("click", cerrarPanel); // tocar afuera también cierra
 //---------- BUSCADOR ---------- //
 buscador.addEventListener("input", () => {
     // 1. leer lo que escribió el cliente, en minúsculas
