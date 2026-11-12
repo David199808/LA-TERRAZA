@@ -20,6 +20,8 @@ const botonCerrar = document.querySelector<HTMLElement>(
 
 const buscador = document.querySelector<HTMLInputElement>(".buscador__input")!;
 
+const sinResultados = document.querySelector<HTMLElement>(".sin-resultados")!;
+
 // Convierte 150000 en "$150.000"
 const formatoPesos = new Intl.NumberFormat("es-CO", {
   style: "currency",
@@ -55,6 +57,13 @@ function crearTarjeta(plato: Plato) {
     descripcion.classList.add("plato__descripcion");
     descripcion.textContent = plato.descripcion;
     tarjeta.append(descripcion);
+  }
+
+  if (plato.opcion) {
+    const opcion = document.createElement("p");
+    opcion.classList.add("plato__opcion");
+    opcion.textContent = plato.opcion;
+    tarjeta.append(opcion);
   }
 
   const precio = document.createElement("p");
@@ -226,6 +235,7 @@ botonCerrar.addEventListener("click", () => {
 buscador.addEventListener("input", () => {
   // 1. leer lo que escribió el cliente, en minúsculas
   const texto = buscador.value.toLowerCase();
+  let total = 0;
   // 2. por cada sección de la página...
   document.querySelectorAll<HTMLElement>("section").forEach((seccion) => {
     // 3. contar cuántos platos quedan visibles → empieza en 0
@@ -245,7 +255,14 @@ buscador.addEventListener("input", () => {
       });
     // 7. si no quedó ninguno, esconder la sección completa
     seccion.hidden = visibles === 0;
+    total += visibles; // cada mesero le entrega su cuenta
   });
+  sinResultados.hidden = total > 0; // ¿hubo resultados? entonces escóndelo
+  document
+    .querySelectorAll<HTMLElement>(".seccion__grupo")
+    .forEach((titulo) => {
+      titulo.hidden = texto !== "";
+    });
 });
 
 // ---------- PEDIDO POR WHATSAPP --------- //

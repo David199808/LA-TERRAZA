@@ -21,6 +21,7 @@ export interface Plato {
   nombre: string;
   descripcion?: string;
   precio: number;
+  opcion?: string;
 }
 
 export interface Seccion {
@@ -55,6 +56,23 @@ export const MENU: Seccion[] = [
           "Camarones en salsa de la casa, con papas a la francesa, ensalada y salsas de la casa.",
         foto: "img/platos/brocheta-camarones.jpg",
       },
+      {
+        id: 3,
+        nombre: "Picada mixta premium",
+        precio: 35000,
+        descripcion:
+          "100 g de pollo, 100 g de lomo de res y chorizo en rodajas, con papas a la francesa y salsas de la casa.",
+        opcion: "Elige tu salsa: BBQ o chimichurri",
+        foto: "img/platos/picada-mixta.jpg",
+      },
+      {
+        id: 4,
+        nombre: "Mazorcada premium",
+        precio: 35000,
+        descripcion:
+          "180 g de pollo, chorizo, papas a la francesa, maíz dulce en salsa de la casa y queso.",
+        foto: "img/platos/mazorcada.jpg",
+      },
     ],
   },
   /* ---------------------- ANTOJOS ---------------------- */
@@ -65,20 +83,20 @@ export const MENU: Seccion[] = [
     estilo: "tarjetas",
     items: [
       {
-        id: 3,
+        id: 5,
         nombre: "Salchipapa de la casa",
         precio: 30000,
         descripcion:
           "3 salchichas rancheras, 1 chorizo, queso, tocineta, papas a la francesa y salsas de la casa.",
       },
       {
-        id: 4,
+        id: 6,
         nombre: "Choripapa junior",
         precio: 15000,
         descripcion: "Papas a la francesa, chorizo, queso y salsas.",
       },
       {
-        id: 5,
+        id: 7,
         nombre: "Salchi junior",
         precio: 15000,
         descripcion: "Papas a la francesa, salchicha ranchera, queso y salsas.",
@@ -94,7 +112,7 @@ export const MENU: Seccion[] = [
     nota: "Cámbiala de pan a patacón por solo $2.000 más",
     items: [
       {
-        id: 6,
+        id: 8,
         nombre: "Grill House",
         precio: 23000,
         descripcion:
@@ -102,14 +120,14 @@ export const MENU: Seccion[] = [
         foto: "img/platos/grill-house.jpg",
       },
       {
-        id: 7,
+        id: 9,
         nombre: "Grill House doble",
         precio: 32000,
         descripcion:
           "300 g de carne de res a la parrilla, queso, mermelada de tocineta con cebolla, vegetales y salsas de la casa.",
       },
       {
-        id: 8,
+        id: 10,
         nombre: "Grill Imperial",
         precio: 23000,
         descripcion:
@@ -117,7 +135,7 @@ export const MENU: Seccion[] = [
         foto: "img/platos/grill-imperial.jpg",
       },
       {
-        id: 9,
+        id: 11,
         nombre: "Americana",
         precio: 23000,
         descripcion:
@@ -125,21 +143,21 @@ export const MENU: Seccion[] = [
         foto: "img/platos/americana.jpg",
       },
       {
-        id: 10,
+        id: 12,
         nombre: "Mexicana",
         precio: 23000,
         descripcion:
           "150 g de carne a la parrilla, queso, salsa de la casa, tocineta crocante, pico de gallo, jalapeños y Doritos.",
       },
       {
-        id: 11,
+        id: 13,
         nombre: "Gaucha",
         precio: 25000,
         descripcion:
           "150 g de carne a la parrilla, queso, salsa de la casa, chorizo, vegetales y chimichurri cremoso.",
       },
       {
-        id: 12,
+        id: 14,
         nombre: "Queso apanado",
         precio: 25000,
         descripcion:
@@ -155,21 +173,21 @@ export const MENU: Seccion[] = [
     estilo: "tarjetas",
     items: [
       {
-        id: 13,
+        id: 15,
         nombre: "Doble smash",
         precio: 25000,
         descripcion:
           "2 carnes smash de 80 g, queso, mermelada de tocineta, pepinillos y salsa de la casa.",
       },
       {
-        id: 14,
+        id: 16,
         nombre: "Triple smash",
         precio: 32000,
         descripcion:
           "3 carnes smash de 80 g, queso, mermelada de tocineta, pepinillos y salsa de la casa.",
       },
       {
-        id: 15,
+        id: 17,
         nombre: "Oklahoma doble",
         precio: 25000,
         descripcion:
@@ -177,7 +195,7 @@ export const MENU: Seccion[] = [
         foto: "img/platos/oklahoma-doble.jpg",
       },
       {
-        id: 16,
+        id: 18,
         nombre: "Oklahoma triple",
         precio: 32000,
         descripcion:
@@ -194,7 +212,7 @@ export const MENU: Seccion[] = [
     estilo: "tarjetas",
     items: [
       {
-        id: 17,
+        id: 19,
         nombre: "Pollo apanado BBQ",
         precio: 25000,
         descripcion:
@@ -210,9 +228,9 @@ export const MENU: Seccion[] = [
     grupo: "comida",
     estilo: "lista",
     items: [
-      { id: 18, nombre: "Porción de papas a la francesa", precio: 6000 },
+      { id: 20, nombre: "Porción de papas a la francesa", precio: 6000 },
       {
-        id: 19,
+        id: 21,
         nombre: "Michelada",
         precio: 2000,
         descripcion: "Para acompañar tu cerveza.",
@@ -229,19 +247,19 @@ export const MENU: Seccion[] = [
     estilo: "lista",
     items: [
       {
-        id: 20,
+        id: 22,
         nombre: "Piña colada",
         precio: 20000,
         descripcion: "Coco, piña, ron y leche condensada.",
       },
       {
-        id: 21,
+        id: 23,
         nombre: "Mojito de fresa",
         precio: 18000,
         descripcion: "Ron blanco, hierbabuena, fresas, azúcar, limón y Sprite.",
       },
       {
-        id: 22,
+        id: 24,
         nombre: "Margarita frozen azul",
         precio: 20000,
         descripcion: "Tequila, limón, curazao y azúcar.",
@@ -256,13 +274,13 @@ export const MENU: Seccion[] = [
     estilo: "lista",
     items: [
       {
-        id: 23,
+        id: 25,
         nombre: "Soda de frutos rojos",
         precio: 13000,
         descripcion: "Cereza, limón, perlas explosivas de cereza y soda.",
       },
       {
-        id: 24,
+        id: 26,
         nombre: "Soda laguna azul",
         precio: 13000,
         descripcion: "Blueberry, limón, perlas explosivas de blueberry y soda.",
@@ -276,9 +294,9 @@ export const MENU: Seccion[] = [
     grupo: "bebidas",
     estilo: "lista",
     items: [
-      { id: 25, nombre: "Malteada de café", precio: 14000 },
-      { id: 26, nombre: "Malteada de Baileys", precio: 14000 },
-      { id: 27, nombre: "Malteada de vainilla", precio: 14000 },
+      { id: 27, nombre: "Malteada de café", precio: 14000 },
+      { id: 28, nombre: "Malteada de Baileys", precio: 14000 },
+      { id: 29, nombre: "Malteada de vainilla", precio: 14000 },
     ],
   },
   /* ---------------------- Jugos & Limonadas---------------------- */
@@ -289,32 +307,32 @@ export const MENU: Seccion[] = [
     estilo: "lista",
     items: [
       {
-        id: 28,
+        id: 30,
         nombre: "Batido de coco",
         precio: 13000,
         descripcion:
           "Extracto de coco, leche condensada, leche y coco rallado.",
       },
       {
-        id: 29,
+        id: 31,
         nombre: "Limonada de coco",
         precio: 13000,
         descripcion: "Extracto de coco, leche condensada, leche y limón.",
       },
       {
-        id: 30,
+        id: 32,
         nombre: "Limonada cerezada",
         precio: 13000,
         descripcion: "Extracto de cereza, agua, limón y azúcar.",
       },
       {
-        id: 31,
+        id: 33,
         nombre: "Limonada maracumango",
         precio: 13000,
         descripcion: "Extracto de mango y maracuyá, agua, limón y azúcar.",
       },
       {
-        id: 32,
+        id: 34,
         nombre: "Limonada natural",
         precio: 9000,
         descripcion: "Limón, agua, azúcar y hielo.",
@@ -328,10 +346,10 @@ export const MENU: Seccion[] = [
     grupo: "bebidas",
     estilo: "lista",
     items: [
-      { id: 32, nombre: "Águila", precio: 6000 },
-      { id: 33, nombre: "Cola y Pola", precio: 6000 },
-      { id: 34, nombre: "Coronita", precio: 8000 },
-      { id: 35, nombre: "Club Colombia", precio: 7000 },
+      { id: 35, nombre: "Águila", precio: 6000 },
+      { id: 36, nombre: "Cola y Pola", precio: 6000 },
+      { id: 37, nombre: "Coronita", precio: 8000 },
+      { id: 38, nombre: "Club Colombia", precio: 7000 },
     ],
   },
   /* ---------------------- Sin alcohol ---------------------- */
@@ -341,11 +359,11 @@ export const MENU: Seccion[] = [
     grupo: "bebidas",
     estilo: "lista",
     items: [
-      { id: 36, nombre: "Agua", precio: 4000 },
-      { id: 37, nombre: "Coca-Cola 400 ml", precio: 4500 },
-      { id: 38, nombre: "Ginger personal", precio: 4500 },
-      { id: 39, nombre: "Bretaña personal", precio: 4500 },
-      { id: 40, nombre: "Sprite", precio: 4500 },
+      { id: 39, nombre: "Agua", precio: 4000 },
+      { id: 40, nombre: "Coca-Cola 400 ml", precio: 4500 },
+      { id: 41, nombre: "Ginger personal", precio: 4500 },
+      { id: 42, nombre: "Bretaña personal", precio: 4500 },
+      { id: 43, nombre: "Sprite", precio: 4500 },
     ],
   },
 ];
