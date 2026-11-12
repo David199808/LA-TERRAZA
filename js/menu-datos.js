@@ -231,18 +231,70 @@ export const MENU = [
             { id: 27, nombre: "Malteada de vainilla", precio: 14000 },
         ],
     },
+    /* ---------------------- Jugos & Limonadas---------------------- */
+    {
+        id: "jugos-y-limonadas",
+        titulo: "Jugos y limonadas",
+        grupo: "bebidas",
+        estilo: "lista",
+        items: [
+            {
+                id: 28,
+                nombre: "Batido de coco",
+                precio: 13000,
+                descripcion: "Extracto de coco, leche condensada, leche y coco rallado.",
+            },
+            {
+                id: 29,
+                nombre: "Limonada de coco",
+                precio: 13000,
+                descripcion: "Extracto de coco, leche condensada, leche y limón.",
+            },
+            {
+                id: 30,
+                nombre: "Limonada cerezada",
+                precio: 13000,
+                descripcion: "Extracto de cereza, agua, limón y azúcar.",
+            },
+            {
+                id: 31,
+                nombre: "Limonada maracumango",
+                precio: 13000,
+                descripcion: "Extracto de mango y maracuyá, agua, limón y azúcar.",
+            },
+            {
+                id: 32,
+                nombre: "Limonada natural",
+                precio: 9000,
+                descripcion: "Limón, agua, azúcar y hielo.",
+            },
+        ],
+    },
+    /* ---------------------- Cervezas ---------------------- */
+    {
+        id: "cervezas",
+        titulo: "Cervezas",
+        grupo: "bebidas",
+        estilo: "lista",
+        items: [
+            { id: 32, nombre: "Águila", precio: 6000 },
+            { id: 33, nombre: "Cola y Pola", precio: 6000 },
+            { id: 34, nombre: "Coronita", precio: 8000 },
+            { id: 35, nombre: "Club Colombia", precio: 7000 },
+        ],
+    },
+    /* ---------------------- Sin alcohol ---------------------- */
+    {
+        id: "sin-alcohol",
+        titulo: "Sin alcohol",
+        grupo: "bebidas",
+        estilo: "lista",
+        items: [
+            { id: 36, nombre: "Agua", precio: 4000 },
+            { id: 37, nombre: "Coca-Cola 400 ml", precio: 4500 },
+            { id: 38, nombre: "Ginger personal", precio: 4500 },
+            { id: 39, nombre: "Bretaña personal", precio: 4500 },
+            { id: 40, nombre: "Sprite", precio: 4500 },
+        ],
+    },
 ];
-export function guardarProductos(lista) {
-    localStorage.setItem("menu", JSON.stringify(lista));
-}
-export function obtenerProducto() {
-    const guardado = localStorage.getItem("menu");
-    if (guardado) {
-        const guardados = JSON.parse(guardado);
-        return guardados;
-    }
-    else {
-        guardarProductos(MENU);
-        return MENU;
-    }
-}

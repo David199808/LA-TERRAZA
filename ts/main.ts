@@ -18,6 +18,8 @@ const botonCerrar = document.querySelector<HTMLElement>(
   ".panel-pedido__cerrar",
 )!;
 
+const buscador = document.querySelector<HTMLInputElement>(".buscador__input")!;
+
 // Convierte 150000 en "$150.000"
 const formatoPesos = new Intl.NumberFormat("es-CO", {
   style: "currency",
@@ -217,6 +219,33 @@ pedidoFlotante.addEventListener("click", () => {
 
 botonCerrar.addEventListener("click", () => {
   panelPedido.hidden = true;
+});
+
+//---------- BUSCADOR ---------- //
+
+buscador.addEventListener("input", () => {
+  // 1. leer lo que escribió el cliente, en minúsculas
+  const texto = buscador.value.toLowerCase();
+  // 2. por cada sección de la página...
+  document.querySelectorAll<HTMLElement>("section").forEach((seccion) => {
+    // 3. contar cuántos platos quedan visibles → empieza en 0
+    let visibles = 0;
+    // 4. por cada plato de ESTA sección (tarjetas y filas)...
+    seccion
+      .querySelectorAll<HTMLElement>(".plato, .plato-fila")
+      .forEach((plato) => {
+        // 5. ¿su nombre contiene lo que se escribió?
+        const nombre = plato
+          .querySelector(".plato__titulo, .plato-fila__nombre")!
+          .textContent!.toLowerCase();
+        const coincide = nombre.includes(texto);
+        // 6. si sí: mostrarlo y contarlo; si no: esconderlo
+        plato.hidden = !coincide;
+        if (coincide) visibles++;
+      });
+    // 7. si no quedó ninguno, esconder la sección completa
+    seccion.hidden = visibles === 0;
+  });
 });
 
 // ---------- PEDIDO POR WHATSAPP --------- //
