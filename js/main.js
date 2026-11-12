@@ -177,6 +177,26 @@ pedidoFlotante.addEventListener("click", () => {
 botonCerrar.addEventListener("click", () => {
     panelPedido.hidden = true;
 });
+// ---------- PEDIDO POR WHATSAPP --------- //
+botonEnviar.addEventListener("click", () => {
+    // 1. si el pedido está vacío, salte
+    if (pedidoNuevo.contarUnidades() === 0) {
+        return;
+    }
+    // 2. convertir cada item en su línea "- nombre x cantidad = subtotal"
+    const lineas = pedidoNuevo
+        .obtenerItems()
+        .map(({ nombre, precio, cantidad }) => {
+        const subtotal = precio * cantidad;
+        return `- ${nombre} x ${cantidad} = ${formatoPesos.format(subtotal)}`;
+    });
+    // 3. armar el mensaje completo: saludo + líneas juntas + total
+    const mensaje = `¡Hola La Terraza Grill House! Este es mi pedido: \n${lineas.join("\n")}\nTotal: ${formatoPesos.format(pedidoNuevo.calcularTotal())}`;
+    // 4. armar el link de WhatsApp con el mensaje seguro
+    const link = `https://wa.me/573001234567?text=${encodeURIComponent(mensaje)}`;
+    // 5. abrirlo en una pestaña nueva
+    window.open(link, "_blank");
+});
 // ----- INICIO ----- //
 dibujarMenu();
 dibujarCategorias();
