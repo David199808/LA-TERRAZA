@@ -227,6 +227,94 @@ img {
   }
 }
 
+/* ---------- Lista (bebidas y adicionales) ---------- */
+
+.lista {
+  grid-column: 1 / -1;
+  list-style: none;
+  margin: 0;
+  padding: 8px 20px;
+  background: var(--superficie);
+  border: 1px solid var(--superficie-2);
+  border-radius: var(--radius);
+}
+
+/* Cada fila: el texto a la izquierda y el "+" a la derecha */
+
+.plato-fila {
+  display: grid;
+  grid-template-columns: 1fr auto; /* columna flexible + columna justa */
+  column-gap: 16px;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--superficie-2);
+  break-inside: avoid; /* que una fila no se parta entre 2 columnas*/
+}
+
+.plato-fila:last-child {
+  border-bottom: 0;
+}
+
+/* El botón ocupa la columna 2, a la altura de las dos filas */
+
+.plato-fila__boton {
+  grid-column: 2;
+  grid-row: 1 / span 2; /* NUEVO: ocupa 2 filas de alto */
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--fuego);
+  border-radius: 50%;
+  background: none;
+  color: var(--fuego);
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Nombre · · · · · precio, en una sola línea */
+
+.plato-fila__linea {
+  display: flex;
+  align-items: baseline; /* textos alineados por su base */
+  gap: 10px;
+}
+
+.plato-fila__nombre {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.plato-fila__puntitos {
+  flex: 1; /* NUEVO: ocupa TODO el espacio que sobra */
+  border-bottom: 2px dotted var(--superficie-2);
+  transform: translateY(-4px); /* sube los puntitos un poco */
+  min-width: 16px;
+}
+
+.plato-fila__precio {
+  margin: 0;
+  font-weight: 800;
+  color: var(--fuego);
+  white-space: nowrap;
+  font-size: 14px;
+}
+
+@media (hover: hover) {
+  .plato-fila__boton:hover {
+    background: var(--fuego);
+    color: #1a0f05;
+  }
+}
+
+/* En pantallas grandes: 2 columnas, como la referencia */
+@media (min-width: 760px) {
+  .lista {
+    columns: 2;
+    column-gap: 48px;
+    padding: 8px 28px;
+  }
+}
+
 /* ---------- Botón flotante "Ver pedido" ---------- */
 
 .pedido-flotante {

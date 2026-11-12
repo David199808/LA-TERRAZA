@@ -55,6 +55,37 @@ function crearTarjeta(plato) {
     tarjeta.append(precio, boton);
     return tarjeta;
 }
+function crearFila(plato) {
+    const platoFila = document.createElement("li");
+    platoFila.classList.add("plato-fila");
+    const linea = document.createElement("div");
+    linea.classList.add("plato-fila__linea");
+    const puntos = document.createElement("span");
+    puntos.classList.add("plato-fila__puntitos");
+    const nombreFila = document.createElement("h4");
+    nombreFila.classList.add("plato-fila__nombre");
+    nombreFila.textContent = plato.nombre;
+    const precioFila = document.createElement("p");
+    precioFila.classList.add("plato-fila__precio");
+    precioFila.textContent = formatoPesos.format(plato.precio);
+    linea.append(nombreFila, puntos, precioFila);
+    platoFila.append(linea);
+    if (plato.descripcion) {
+        const descripcionFila = document.createElement("p");
+        descripcionFila.classList.add("plato-fila__descripcion");
+        descripcionFila.textContent = plato.descripcion;
+        platoFila.append(descripcionFila);
+    }
+    const botonFila = document.createElement("button");
+    botonFila.classList.add("plato-fila__boton");
+    botonFila.textContent = "+";
+    botonFila.addEventListener("click", () => {
+        pedidoNuevo.agregarPlato(plato);
+        actualizarContador();
+    });
+    platoFila.append(botonFila);
+    return platoFila;
+}
 // ------ Dibujar Menú ----- //
 function dibujarMenu() {
     MENU.forEach((seccion) => {
@@ -63,10 +94,21 @@ function dibujarMenu() {
         const tituloHTML = document.createElement("h2");
         tituloHTML.textContent = seccion.titulo;
         seccionHTML.append(tituloHTML);
-        seccion.items.forEach((plato) => {
-            const tarjeta = crearTarjeta(plato);
-            seccionHTML.append(tarjeta);
-        });
+        if (seccion.estilo === "lista") {
+            const listaHTML = document.createElement("ul");
+            listaHTML.classList.add("lista");
+            seccion.items.forEach((plato) => {
+                const fila = crearFila(plato);
+                listaHTML.append(fila);
+                seccionHTML.append(listaHTML);
+            });
+        }
+        else {
+            seccion.items.forEach((plato) => {
+                const tarjeta = crearTarjeta(plato);
+                seccionHTML.append(tarjeta);
+            });
+        }
         menu.append(seccionHTML);
     });
 }
