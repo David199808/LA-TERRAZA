@@ -116,6 +116,12 @@ function dibujarMenu() {
         const tituloHTML = document.createElement("h2");
         tituloHTML.textContent = seccion.titulo;
         seccionHTML.append(tituloHTML);
+        if (seccion.nota) {
+            const notaHTML = document.createElement("p");
+            notaHTML.classList.add("seccion__nota");
+            notaHTML.textContent = seccion.nota;
+            seccionHTML.append(notaHTML);
+        }
         if (seccion.grupo !== grupoAnterior) {
             const seccionGrupo = document.createElement("h1");
             seccionGrupo.classList.add("seccion__grupo");

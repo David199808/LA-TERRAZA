@@ -173,6 +173,17 @@ img {
   text-transform: capitalize;
 }
 
+.seccion__nota {
+  grid-column: 1 / -1; /* todo el ancho de la grilla */
+  margin: 0;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: rgba(242, 140, 40, 0.12); /* naranja muy suave */
+  border: 1px solid rgba(242, 140, 40, 0.35);
+  color: var(--dorado);
+  font-weight: 600;
+}
+
 .menu {
   max-width: var(--max);
   margin: 0 auto;
@@ -455,6 +466,10 @@ img {
   border-radius: var(--radius) var(--radius);
   box-shadow: 0 -12px 32px rgba(0, 0, 0, 0.6);
   z-index: 20;
+}
+
+.panel-pedido > * {
+  flex-shrink: 0; /* NUEVO: ningún hijo del panel se encoge */
 }
 
 .panel-pedido h2 {

@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="es">
+  <!------ head ------>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,7 +12,7 @@
     <meta name="theme-color" content="#121110" />
     <link rel="icon" href="img/logo.svg" type="image/svg+xml" />
 
-    <!-- Tipografías del logo -->
+    <!------ Tipografías del logo ------>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -20,8 +21,9 @@
     />
     <link rel="stylesheet" href="css/styles.css" />
   </head>
+  <!------ head end ------>
   <body>
-    <!-- Encabezado con el logo -->
+    <!----- Encabezado con el logo ----->
     <header class="header">
       <img
         class="header__logo"
@@ -32,13 +34,15 @@
       />
       <p class="header__guion">Nuestro menú</p>
     </header>
+    <!----- Encabezado con el logo end ----->
 
-    <!-- Barra de categorías (se llena desde js/main.js) -->
+    <!----- Barra de categorías (se llena desde ts/main.ts) ----->
     <nav class="categorias" aria-label="Categorías del menú">
       <div class="categorias__enlaces" id="cats"></div>
     </nav>
+    <!----- Barra de categorías end ----->
 
-    <!-- Buscador -->
+    <!------ Buscador ----->
     <div class="buscador">
       <label class="buscador__label" for="buscador">Buscar en el menú</label>
       <input
@@ -49,10 +53,34 @@
         autocomplete="off"
       />
     </div>
-
-    <!-- Aquí se dibuja el menú (desde js/main.js) -->
-    <main class="menu" id="menu"></main>
     <p class="sin-resultados" hidden>No encontramos ese plato 😕</p>
+    <!------ Buscador end ----->
+
+    <!----- Aquí se dibuja el menú (desde ts/main.ts) ----->
+    <main class="menu" id="menu"></main>
+    <!----- Aquí se dibuja el menú end ----->
+
+    <!----- Botón de pedido flotante ----->
+    <button class="pedido-flotante">
+      Ver pedido (<span class="pedido__contador">0</span>)
+    </button>
+    <!----- Botón de pedido flotante end ----->
+
+    <!----- Paenel de fondo opaco ----->
+    <div class="panel-fondo" hidden></div>
+    <!----- Paenel de fondo opaco end ----->
+
+    <!----- Paenel de pedido ----->
+    <aside class="panel-pedido" hidden>
+      <button class="panel-pedido__cerrar">X</button>
+      <h2>Tu pedido</h2>
+      <ul class="panel-pedido__lista"></ul>
+      <p class="panel-pedido__total"></p>
+      <button class="panel-pedido__enviar">Enviar por WhatsApp</button>
+    </aside>
+    <!----- Paenel de pedido end ----->
+
+    <!----- Footer ----->
     <footer class="footer">
       <img
         class="footer__logo"
@@ -62,7 +90,7 @@
         height="531"
       />
       <p class="footer__tagline">
-        Parrilla, buena música y la mejor vista de Pitalito. ¡Te esperamos!
+        Parrilla, buena música y la mejor vista de Pitalito.<br />¡Te esperamos!
       </p>
 
       <div class="footer__info">
@@ -94,17 +122,8 @@
         </div>
       </div>
     </footer>
-    <button class="pedido-flotante">
-      Ver pedido (<span class="pedido__contador">0</span>)
-    </button>
-    <div class="panel-fondo" hidden></div>
-    <aside class="panel-pedido" hidden>
-      <button class="panel-pedido__cerrar">X</button>
-      <h2>Tu pedido</h2>
-      <ul class="panel-pedido__lista"></ul>
-      <p class="panel-pedido__total"></p>
-      <button class="panel-pedido__enviar">Enviar por Whatsapp</button>
-    </aside>
+    <!----- Footer end ----->
+
     <script type="module" src="js/main.js"></script>
   </body>
 </html>
